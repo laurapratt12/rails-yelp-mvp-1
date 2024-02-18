@@ -1,19 +1,24 @@
-<h1><%= @restaurant.name %></h1>
-<p><strong>Address:</strong> <%= @restaurant.address %></p>
-<p><strong>Phone Number:</strong> <%= @restaurant.phone_number %></p>
-<p><strong>Category:</strong> <%= @restaurant.category %></p>
-
-<h5>All Reviews for <%= @restaurant.name %></h2>
-<ul class="list-group">
-  <% @restaurant.reviews.each do |review| %>
-    <li>
-      <%= review.content %>
-    </li>
-    <li>
-      <%= review.rating %>
-    </li>
-  <% end %>
-</ul>
-
-<%= link_to "Add a review", new_restaurant_review_path(@restaurant) %>
-<%= link_to 'Back', root_path %>
+<div class="show-container">
+  <div class="restaurant-container">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title" id="card-title-restaurant"><%= @restaurant.name %></h5>
+        <h6 class="card-subtitle mb-2">Address: <%= @restaurant.address %></h6>
+        <p class="card-text"><strong>Phone Number:</strong> <%= @restaurant.phone_number %></p>
+        <p class="card-text"><strong>Category:</strong> <%= @restaurant.category %></p>
+        <h5 class="card-title" id="card-title-review">All Reviews for <%= @restaurant.name %></h5>
+        <ul class="list-group list-group-flush">
+          <% @restaurant.reviews.each do |review| %>
+            <li class="list-group-item">
+              <%= review.content %> | Rating: <%= review.rating %>
+            </li>
+          <% end %>
+        </ul>
+        <div id="links-show">
+          <%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "card-link" %>
+          <%= link_to 'Back', root_path, class: "card-link" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,35 @@
-<div class="container">
-  <h1><%= "Restaurants" %></h1>
-  <ul class= "list-group">
-    <% @restaurants.each do |restaurant| %>
-      <li>
-        <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
-      </li>
-    <% end %>
-  </ul>
-  <div id="add">
-    <%= link_to new_restaurant_path do %>
-      <i class="fa-solid fa-plus"></i> Add a new restaurant
-    <% end %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('yelp-cover.jpg') %>)">
+  <div class="container">
+    <h1><strong>Yelp</strong>!</h1>
+    <p>Recommend the best restaurants</p>
   </div>
-
+</div>
+<ul class="list-group">
+  <% @restaurants.each do |restaurant| %>
+    <li class="list-group-item">
+      <div class="card-product">
+          <%= link_to restaurant_path(restaurant) do %>
+              <%= image_tag("listing-restaurant-logo.jpg", class: "card-img-top") %>
+          <% end %>
+          <div class="card-product-infos">
+            <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
+            <ul>
+              <% restaurant.reviews.each do |review| %>
+                <li>
+                  <h4 class="card-text"><strong>Rating:</strong> <span><%= review.rating %></span></h4>
+                </li>
+                <li>
+                  <h4><%= review.content %></h4>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<div id="add">
+  <%= link_to new_restaurant_path do %>
+    <i class="fa-solid fa-plus"></i> Add a new restaurant
+  <% end %>
 </div>
